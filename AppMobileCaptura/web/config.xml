@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id        = "com.phonegap.example"
+    version   = "1.0.0">
+
+<name>Unidad Gits</name>
+
+<description>
+En esta aplicacón usted podra visualizar mapas de accidentes de transito, 
+zonas de interes y de contexto fisico geografico de la Zona Metropilitana
+</description>
+
+<author href="https://example.com" email="jonathan.gits@gmail.com">
+Jonathan Landin Zaragoza
+</author>
+
+<icon src="gits.png" />
+<icon src="gits.png"   gap:platform="android"    gap:density="ldpi" />
+<icon src="gits.png"   gap:platform="android"    gap:density="mdpi" />
+<icon src="gits.png"   gap:platform="android"    gap:density="hdpi" />
+<icon src="gits.png"  gap:platform="android"    gap:density="xhdpi" />
+
+
+</widget>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://web.resource.org/cc/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" sodipodi:docbase="C:\Dokumente und Einstellungen\ulfl\Eigene Dateien\svn.openstreetmap.org\applications\share\map-icons\svg" inkscape:output_extension="org.inkscape.output.svg.inkscape" sodipodi:docname="transport.svg" inkscape:version="0.45.1" sodipodi:version="0.32"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px" height="50px"
+	 viewBox="1336.683 1017.254 50 50" enable-background="new 1336.683 1017.254 50 50" xml:space="preserve">
+<sodipodi:namedview  guidetolerance="10.0" objecttolerance="10.0" borderopacity="1.0" gridtolerance="10.0" inkscape:cy="936.21229" inkscape:cx="210.01067" inkscape:zoom="0.1178125" pagecolor="#ffffff" bordercolor="#666666" id="base" inkscape:window-width="1116" inkscape:pageshadow="2" inkscape:window-height="808" inkscape:current-layer="svg2" inkscape:window-y="58" inkscape:window-x="44" inkscape:pageopacity="0.0">
+	</sodipodi:namedview>
+<path id="Car" d="M1338.871,1058.79c-0.032-4.12-0.215-0.576,1.732-6.675c1.409-4.146-0.01-3.034,7.217-3.152
+	c6.432,0.198,5.138-1.006,6.603,3.409c1.834,5.653,1.699,2.698,1.677,6.38c-0.08,4.039,1.084,3.008-8.651,3.097
+	C1337.789,1061.635,1338.928,1062.695,1338.871,1058.79z M1340.838,1054.823l1.333-3.923c0.249-0.696,0.17-0.594,0.747-0.596
+	l9.245,0.043c0.501,0.005,0.427-0.037,0.632,0.578l1.304,3.912L1340.838,1054.823z M1339.872,1062.264l2.473,0.005
+	c-0.019,3.993,0.239,3.771-1.109,3.791C1339.629,1066.043,1339.882,1066.254,1339.872,1062.264z M1352.606,1062.353l2.478,0.012
+	c-0.027,3.999,0.199,3.727-1.202,3.731C1352.433,1066.064,1352.616,1066.358,1352.606,1062.353z"/>
+<ellipse id="LeftLamp" sodipodi:rx="66.5" sodipodi:ry="66.5" sodipodi:cy="412" sodipodi:cx="150" fill="#FFFFFF" cx="1341.114" cy="1057.764" rx="1.207" ry="1.554">
+</ellipse>
+<ellipse id="RightLamp" sodipodi:rx="66.5" sodipodi:ry="66.5" sodipodi:cy="412" sodipodi:cx="850" fill="#FFFFFF" cx="1353.826" cy="1057.823" rx="1.208" ry="1.553">
+</ellipse>
+<g id="g1970" transform="matrix(2.2144897,2.2294123,-2.2294123,2.2144897,762.03988,-470.64726)">
+	<path id="path1972" d="M470.046,199.421c-0.085-0.705,0.981-0.568,1.068,0.157l0.36,2.958l4.455,3.023l0.133,1.093l-4.297-1.888
+		l0.269,2.211l1.047,0.868l0.105,0.864l-1.53-0.647l-1.419,0.267l-0.105-0.864l0.855-0.623l-0.269-2.211l-3.968,0.825l-0.133-1.093
+		l3.79-1.962L470.046,199.421z"/>
+</g>
+<g id="g2113" transform="matrix(4.2581866,0,0,4.2581866,1211.6079,227.65004)">
+	<path id="path2115" d="M37.733,186.751c-0.731-0.003-1.741,0.26-2.16,0.482c-0.418,0.222-0.697,0.444-0.786,1.004l-0.322,3.101
+		l-0.012,4.275l0.54,0.002l-0.002,0.671c-0.002,0.817,0.928,0.822,0.93,0.004l0.002-0.67l1.717,0.008h0.006l1.785,0.008
+		l-0.002,0.671c-0.002,0.817,0.928,0.822,0.93,0.005l0.001-0.671l0.54,0.002l0.012-4.275l-0.305-3.104
+		c-0.085-0.56-0.363-0.785-0.78-1.011c-0.417-0.226-1.426-0.499-2.157-0.503"/>
+	<g id="g2117">
+		<g id="g2119">
+			<g id="g2121">
+				<path id="path2123" fill="#FFFFFF" d="M39.899,194.299c0.246,0.001,0.447-0.255,0.447-0.572
+					c0.001-0.317-0.198-0.575-0.444-0.576c-0.246-0.001-0.447,0.255-0.448,0.572C39.454,194.04,39.653,194.298,39.899,194.299z"/>
+				<path id="path2125" fill="#FFFFFF" d="M34.478,186.736"/>
+			</g>
+			<g id="g2127">
+				<path id="path2129" fill="#FFFFFF" d="M35.462,194.278c-0.246-0.001-0.445-0.259-0.445-0.576
+					c0.001-0.317,0.201-0.573,0.448-0.572c0.246,0.001,0.445,0.259,0.444,0.576C35.909,194.023,35.708,194.279,35.462,194.278z"/>
+				<path id="path2131" fill="#FFFFFF" d="M34.478,186.736"/>
+			</g>
+		</g>
+		<path id="path2133" fill="#FFFFFF" d="M37.664,188.038l-1.292-0.006c-0.261-0.001-0.26-0.505,0.001-0.504l1.295,0.006l1.358,0.006
+			c0.261,0.001,0.259,0.505-0.002,0.504L37.664,188.038z"/>
+		<path id="path2135" fill="#FFFFFF" d="M37.662,188.547l-1.995-0.01c-0.276-0.001-0.348,0.179-0.383,0.452l-0.25,2.249
+			c-0.023,0.215,0.025,0.43,0.256,0.431l2.367,0.011l2.429,0.012c0.232,0.001,0.281-0.213,0.259-0.429l-0.238-2.251
+			c-0.033-0.274-0.104-0.454-0.38-0.455L37.662,188.547z"/>
+	</g>
+</g>
+</svg>

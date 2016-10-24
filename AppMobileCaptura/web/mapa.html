@@ -1,0 +1,381 @@
+<!DOCTYPE html> 
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Aplic. Web de jQuery Mobile</title>
+        
+<!--VERSIONES VIEJAS 1.2.1-->
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>        
+
+<script src="OpenLayers.js"></script>
+<link rel="stylesheet" href="theme/default/Style_1.css" type="text/css">
+<!--<link rel="stylesheet" href="Style_1.css" type="text/css">-->
+   
+<link rel="stylesheet" href="theme/default/style.mobile.css" type="text/css">
+<link rel="stylesheet" href="theme/default/style.mobile-jq.css" type="text/css">
+<script src="mobile-base2.js"></script>
+<script src="mobile-jq2.js"></script>
+ 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.6.0/ol.css" type="text/css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ol3/3.6.0/ol.js"></script>
+
+        <style>
+            #general #layerspage{display: none}
+            #general #layerspage{display: block}
+        </style>
+        <style type='text/css'>     
+			.olControlPanel button {
+          position: relative;
+          display: block;
+          margin: 2px;
+          border: 1px solid;
+          padding: 0 5px;
+          border-radius: 4px;
+          height: 35px;
+          background-color: white;
+          float: left;
+          overflow: visible; /* needed to remove padding from buttons in IE */
+        }
+    	</style>  
+ 
+ <!--<link rel="stylesheet" href="ol.css" type="text/css">-->
+ 
+    </head>
+    <body>
+        
+        
+        <h1 id="title">Visualizador de mapas de accidentes de tránsito para dispositivos móviles</h1>
+        <div id="tags">
+          mobile, jquery
+        </div>
+        <p id="shortdesc">
+          Using jQuery Mobile to display an OpenLayers map.
+        </p>
+
+        <div data-role="page" id="mappage">
+            <span id="botonAyuda">Ayuda</span>
+            <section id="ayuda">
+                <div class="Tools">
+                    <ul>
+                        <li id="tool_1">Herramienta 1</li>
+                        <li id="tool_2">Herramienta 2</li>
+                        <li id="tool_3">Herramienta 3</li>
+                        <li id="tool_4">Herramienta 4</li>
+                        <li id="tool_5">Herramienta 5</li>
+                    </ul>
+                </div>
+                <div class="Navig">
+                    <ul>
+                        <li id="navi_1">Herramienta 1</li>
+                        <li id="navi_2">Herramienta 2</li>
+                        <li id="navi_3">Herramienta 3</li>
+                    </ul>
+                </div>
+                <div class="Conte">
+                    <ul>
+                        <li id="cont_1">Buscador</li>
+                        <li id="cont_2">Geoproyectos</li>
+                        <li id="cont_3">Registrar punto</li>
+                    </ul>
+                </div>
+                <div id="ayuda_textos">
+                  <p class="ayudaInfo inicial">
+                    Pulsa sobre un elemento para conocer su función
+                  </p>
+                  <p class="ayudaInfo tool_1">
+                    La función <b>Dezplazar / Seleccionar</b> permite al usuario desplazarce en el mapa dentro del visor. 
+                    <br></br>
+                      <img src="css/icon_tool_nav.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo tool_2">
+                    La función <b>Zoom Recuadro</b> permite al usuario acercarse a una zona deseada, dibujando sobre el visor un recuadro de la región preferida. 
+                    <br></br>
+                      <img src="css/icon_tool_zre.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo tool_3">
+                    La función <b>Dibujar Punto</b> permite al usuario colocar un punto deseado sobre el visor.  
+                    <br></br>
+                      <img src="css/icon_tool_dpu.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo tool_4">
+                    La función <b>Dibujar Linea</b> permite al usuario trazar una linea, para señalar algun tramo de interes.
+                    <br></br>
+                      <img src="css/icon_tool_dli.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo tool_5">
+                    La función <b>Dibujar Poligono</b> permite al usuario marcar una área en el visor de mapas.
+                    <br></br>
+                      <img src="css/icon_tool_dpo.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo navi_1">
+                    La función <b>Acercar</b> permitir al usuario realizar acercamientos en el mapa a diferentes niveles.
+                     <br></br>
+                      <img src="css/icon_nav_zmas.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo navi_2">
+                    La función <b>Localízame</b> permitir al usuario conocer su ubicación en el momento que esta utilizado la aplicación.
+                    <br></br>
+                      <img src="css/icon_nav_locate.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo navi_3"> 
+                    La función <b>Alejar</b> permitir al usuario poder visualizar una área más grande del mapa.
+                    <br></br>
+                      <img src="css/icon_nav_zmenos.png">
+                      <br></br>
+                  </p>
+                  <p class="ayudaInfo cont_1">
+                      
+                      El botón <b>Buscador</b> permitir al usuario buscar una zona geográfica.
+                      <br></br>
+                      <img src="css/lupa-psd.png">
+                      <br></br>
+                    Un <b>Buscador</b> da acceso a una base de datos espacial con relación a los sitios agregados en esta.
+                  </p>
+                  <p class="ayudaInfo cont_2">
+                   El botón <b>Geoproyectos</b> 
+                    permite al usuario seleccionar una capa de datos, el mapa seleccionado se muestra en el visor.
+                      <br></br>
+                      <img src="css/ol3-logo.png">
+                      <br></br>
+ 
+                  Los <b>Geoproyectos</b> reúnen contenidos de información que se definen con base en los requerimientos y necesidades específicas de los usuarios.
+                  </p>
+                  <p class="ayudaInfo cont_3">
+                      El botón <b>Registrar punto</b> permitir al usuario la captura de un Accidente de Tránsito. 
+                      
+                       <br></br>
+                      <img src="css/mas.png">
+                      <br></br>
+                    <b>Registrar punto</b> publica la ubicación georeferenciada del suceso localizado a partir de su latitud, longitud y el tipo de accidente, arrojando la
+                       fecha y hora.
+                  </p>
+                </div>
+            </section>
+          <div data-role="content">
+              <div id="map">
+<!--                 <div id="legend" style="background: white">
+                      <img src="http://132.247.103.134:8080/geoservergits/GITSDF/wms?REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=GITSDF:sigatdf_zonas_densidad_kernel_2005"  >
+                      <button onclick="simbologia()"></button>
+                </div>-->
+                  </div>
+              <div id="infos"></div>
+               
+          </div>
+    
+    
+            <div id="tags">
+                
+               coordinate
+             </div>
+            <div id="myposition">
+                
+            </div>
+       
+    
+          <div data-role="footer" >
+
+<!--                      </li> <a href="#searchpage" data-icon="search" data-role="button">Buscador</a></li> 
+                      </li> <a href="#general"   data-icon="layers" data-role="button">Geoproyectos</a></li> 
+                      </li> <a href="registro1.html" data-icon="add" data-role="button">Registrar punto</a></li> -->
+                      
+                      </li> <a href="index.html"    data-icon="layers" data-role="button">Inicio</a></li> 
+                      </li> <a href="RegistroPuntos.html"  data-icon="add" data-role="button">Registrar puntos</a></li> 
+
+          </div>
+            
+            
+            
+          <div id="navigation" data-role="controlgroup" data-type="vertical">
+            <a href="#" data-role="button" data-icon="plus" id="plus"
+               data-iconpos="notext"></a>
+              <a  href="#" id="locate"  data-theme="b" data-icon="locate" data-role="button"  data-iconpos="notext">Lozalízame</a> 
+            
+            <a href="#" data-role="button" data-icon="minus" id="minus"
+               data-iconpos="notext"></a> 
+          </div>
+            
+              
+        </div>
+       
+        <div data-role="page" id="searchpage">
+          <div data-role="header">
+            <h1>Search</h1>
+          </div>
+          <div data-role="fieldcontain">
+            <input type="search" name="query" id="query"
+                   value="" placeholder="Search for places"
+                   autocomplete="on"/>
+          </div>
+          <ul data-role="listview" data-inset="true" id="search_results"></ul> 
+        </div>
+
+       <div data-role="page"  id="general">
+        <div data-role="page"  id="layerspage">
+          <div data-role="header">
+            <h1>Arboles Tematicos</h1>
+          </div>
+            <div data-role="content">
+                <ul id="mainMenu" data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c">
+                <li id="lim"><a href="#page1">Límites Administrativos y Población</a></li>
+                <li id="acc"><a href="#page2">Accidentes de Tránsito</a></li>                
+                <li id="pun"><a href="#page3">Puntos de Interés</a></li>
+                <li id="mod"><a href="#page4">Modos de Transporte</a></li>
+                <li id="inf"><a href="#page5">Infraestructura de Transporte</a></li>
+                <li id="uso"><a href="#page6">Uso de Suelo</a></li>
+                </ul>
+                <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 20%"></td>
+                          <td style="width: 20%"></td>
+                          <td style="width: 20%"><a href="#mappage" data-role="button"  data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 20%"></td>
+                          <td style="width: 20%"></td>
+                        </tr>
+                </table>  
+          </div>
+        </div>
+         </div>
+       
+        
+        
+     
+
+         <div data-role="page" id="page1">
+          <div data-role="header">
+            <h1>Límites Administrativos y Población</h1>
+          </div>
+            <div data-role="content">
+                <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslist"></ul>
+                <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button" data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>               
+          </div> 
+        </div>
+        
+        <div data-role="page" id="page2">
+          <div data-role="header">
+            <h1>Accidentes de Tránsito</h1>
+          </div>
+       <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslistACC"></ul>
+            <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button" data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>   
+          </div> 
+        </div>
+        
+        <div data-role="page" id="page3">
+          <div data-role="header">
+            <h1>Puntos de Interés</h1>
+          </div>
+         <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslistPUNT"></ul>
+            <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button" data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>   
+          </div> 
+        </div>
+        
+        <div data-role="page" id="page4">
+          <div data-role="header">
+            <h1>Modos de Transporte</h1>
+          </div>
+         <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslistMT"></ul>
+            <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button"  data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>   
+          </div> 
+        </div>
+        
+        
+         <div data-role="page" id="page5">
+          <div data-role="header">
+            <h1>Infraestructura de Transporte</h1>
+          </div>
+         <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslistIDT"></ul>
+            <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button"  data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>   
+          </div> 
+        </div>
+        
+        
+        <div data-role="page" id="page6">
+          <div data-role="header">
+            <h1>Uso de Suelo</h1>
+          </div>
+         <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d" data-dividertheme="c" id="layerslistUDS"></ul>
+            <table border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"> <a href="#general" data-role="button" data-icon="arrow-l" data-theme="a">Atras</a></td>
+                          <td style="width: 16%"><a href="#mappage" data-role="button" data-theme="a">Ir a mapa</a></td> 
+                          <td style="width: 16%"></td>
+                          <td style="width: 16%"></td>
+                        </tr>
+                </table>   
+          </div> 
+        </div>
+
+        
+
+        <div id="popup" data-role="dialog">
+            <div data-position="inline" data-theme="d" data-role="header">
+                <h1>Details</h1>
+            </div>
+            <div data-theme="c" data-role="content">
+                <ul id="details-list" data-role="listview">
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

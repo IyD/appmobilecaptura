@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <title>Registro de Puntos</title>
+
+       
+        <script src="http://maps.google.com/maps/api/js?key=AIzaSyANqPlHSSOZTVUhY1HoY86YQY-aDnhm79A"></script>
+        <script type="text/javascript" src="js/main.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       
+       
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+       
+     
+         
+        <script>
+            $(document).bind("mobileinit", function() {
+                $.mobile.defaultPageTransition = 'none';
+                $.mobile.defaultDialogTransition = 'none';
+                $.mobile.useFastClick = true;
+            });
+        </script>
+       
+       
+    </head>
+<body>
+   
+   
+   
+    <style>
+        #Encabezado tr th{
+    width: 25%;
+}
+
+#resultado table {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#resultado table tr td{
+    width: 25%;
+    text-align: center;
+}
+
+    </style>
+
+    <h1 id="demo" align="center" >Registro de accidentes de transito</h1>
+    <center><a data-role="button" type=image src="css/loca.png" data-mini="true" data-theme="e" data-inline="true" onclick="getLocation(), setTimeout(mapCarga, 3000),fecha()">Localizame</a></center>
+<br></br>
+
+<div id="map_canvas" style="margin:0 auto; width:500px;height:380px; display: none;"></div>
+<div id="mapa" style="margin:0 auto; width:500px;height:380px; display: none;"></div>
+<script>
+    var texto = [];
+    var x = document.getElementById("demo");
+
+   
+    //FUNCIONES DE MAPA Y GEOLOCALIZACION
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition,showError);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+var lati = "";
+var long = "";
+function showPosition(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+        lati = lat.toFixed(6);
+        long = lon.toFixed(6);
+  document.getElementById("lat").value= lati;
+  document.getElementById("lon").value= long;
+}
+
+function showError(error) {
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            x.innerHTML = "Usuario ha denegado la solicitud de Geolocalización"
+            break;
+        case error.POSITION_UNAVAILABLE:
+            x.innerHTML = "La información de ubicación no está disponible"
+            break;
+        case error.TIMEOUT:
+            x.innerHTML = "La solicitud para obtener la ubicación del usuario,Tiempo de espera agotado."
+            break;
+        case error.UNKNOWN_ERROR:
+            x.innerHTML = "An unknown error occurred."
+            break;
+    }
+   
+}
+    function mapCarga() {
+        alert("Cargardo Mapa");
+         $('#map_canvas').show();
+         var myLatlng =new google.maps.LatLng( {lat: Number(lati), lng: Number(long)});
+       
+            var myOptions = {
+                zoom: 15,
+                center: myLatlng,
+                mapTypeId: google.maps.MapTypeId.TrafficLayer
+            }
+          
+        //var map=new google.maps.Map(document.getElementById("googleMap"),myOptions);
+        var map = new google.maps.Map( document.getElementById( "map_canvas" ),myOptions);
+        var marker=new google.maps.Marker({
+        position:myLatlng,
+        map: map,
+        });
+}
+   
+
+//FIN DE CREACION DE MAPA
+
+function fecha(){
+    var f = new Date();
+    var hoy = new Date();
+    var dd = hoy.getDate();
+    var mme = hoy.getMonth()+1; //hoy es 0!
+    var yyyy = hoy.getFullYear();
+    var hh = hoy.getHours();
+    var mm = hoy.getMinutes();
+    var ss = hoy.getSeconds();
+    var ms = hoy.getMilliseconds();
+   
+    if(dd<10) {
+            dd='0'+dd
+                        }
+
+            if(mme<10) {
+                    mme='0'+mme
+                            }
+
+    var fecha = yyyy + "-" + mme + "-" + dd +" "+ hh +":" + mm + ":"+ ss + "."+ ms;
+   
+   
+    document.getElementById("atr1").value= fecha;
+
+}
+
+
+
+function descargarArchivo(contenidoEnBlob, nombreArchivo) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var save = document.createElement('a');
+        save.href = event.target.result;
+        save.target = '_blank';
+        save.download = nombreArchivo || 'archivo.dat';
+        var clicEvent = new MouseEvent('click', {
+            'view': window,
+                'bubbles': true,
+                'cancelable': true
+        });
+        save.dispatchEvent(clicEvent);
+        (window.URL || window.webkitURL).revokeObjectURL(save.href);
+    };
+    reader.readAsDataURL(contenidoEnBlob);
+}
+
+//Función de ayuda: reúne los datos a exportar en un solo objeto
+function obtenerDatos() {   
+        texto.push(document.getElementById('lon').value),
+        texto.push(document.getElementById('lat').value),
+        texto.push(document.getElementById('atr1').value),
+        texto.push(document.getElementById('atr2').value)
+
+}
+
+//Genera un objeto Blob con los datos en un archivo TXT
+function generarTexto() {
+var tex =[];
+
+
+      tex.push('Fecha');
+    tex.push(',');
+    tex.push('Tipo accidente');
+    tex.push(',');
+    tex.push('longitud');
+    tex.push(',');
+    tex.push('latitud');
+     tex.push('\n');
+     
+  for(i=0;i<=texto.length-4;i=i+4){
+
+    tex.push(texto[i+2]);
+    tex.push(',');
+    tex.push(texto[i+3]);
+    tex.push(',');
+    tex.push(texto[i]);
+    tex.push(',');
+    tex.push(texto[i+1]);
+    tex.push('\n');
+   
+  }
+    //El contructor de Blob requiere un Array en el primer parámetro
+    //así que no es necesario usar toString. el segundo parámetro
+    //es el tipo MIME del archivo
+    return new Blob(tex, {
+        type: 'text/plain'
+    });
+};
+
+document.getElementById('boton-txt').addEventListener('click', function () {
+    //obtenerDatos();
+    descargarArchivo(generarTexto(), 'archivo.csv');
+}, false);
+
+function crearTabla(){
+	
+	miTabla = document.createElement("table-custom-2");
+        miTabla = document.getElementById("table-custom-2");
+	tbBody = document.createElement("tbody");
+	tr = document.createElement("tr");
+	
+	
+	td1 = document.createElement("td");
+	td2 = document.createElement("td");
+	td3 = document.createElement("td");
+	td4 = document.createElement("td");
+	
+	
+		
+	
+	td1.innerHTML = document.getElementById('lon').value;
+	td2.innerHTML = document.getElementById('lat').value;
+	td3.innerHTML = document.getElementById('atr1').value;
+	td4.innerHTML = document.getElementById('atr2').value;
+	
+
+tr.appendChild(td4);
+tr.appendChild(td1);
+tr.appendChild(td2);
+tr.appendChild(td3);
+
+
+
+tbBody.appendChild(tr);
+
+miTabla.appendChild(tbBody);
+miCapa = document.getElementById('table-custom-2');
+miCapa.appendChild(miTabla);
+
+    
+	
+	
+	
+    
+}
+function save_dato(){
+            var latitud = $("#lat").val();
+            var longitud = $("#lon").val();
+			var usuario = $("#atr2").val();
+			var info = $("#info").val();
+            updateResult(info, longitud,latitud, usuario);
+            return false;
+}
+
+ 
+
+
+function updateResult(info, longitud,latitud, usuario) {
+        var url = "http://132.247.103.30:8080/gits-geoportal-web/info?info="+info+"longi=" +long+ "&lati="+lati+"&user="+usuario;	 // Establecer URL de la acción 
+		alert("Coordenada Capturada");      
+        $("#result").load(url);
+    }
+
+
+
+
+
+</script>
+
+
+
+<form id="frminformacion" name = "form1" >
+
+
+<input type="hidden" name="info" value="logPoint&" id="info"/>
+<input type="hidden" name="fecha" value="" id="atr1"/>
+
+<div data-role="fieldcontain">
+<table style="width:100%; padding: 5px; border-spacing: 15px;">
+    <tr>
+<th style="text-align: left;"><label>Latitud:</label></th>
+<th style="text-align: left;"><input  type="text" name="lati" value="" id="lat" /></th>
+</tr>
+    <tr>
+<th style="text-align: left;"><label>Longitud:</label></th>
+<th style="text-align: left;"><input  type="text" name="longi" value="" id="lon"/></th>
+  </tr>
+    <tr>
+    <th style="text-align: left;"><label>Tipo accidente:</label></th>
+    <th style="text-align: left;"><select name="user" id="atr2">
+                <option value="Volcadura">Volcadura</option>
+                <option value="Colisión_con_peatón_(atropellamiento)">Colisión con peatón (atropellamiento)</option>
+                <option value="Colisión_con_animal">Colisión con animal</option>
+                <option value="Colisión_con_objeto_fijo">Colisión con objeto fijo</option>
+                <option value="Colisión_con_vehículo_automotor">Colisión con vehículo automotor</option>
+                <option value="Caída_de_pasajero">Caída de pasajero</option>
+                <option value="Salida_del_camino">Salida del camino</option>
+                <option value="Incendio">Incendio</option>
+                <option value="Colisión_con_ferrocarril">Colisión con ferrocarril</option>
+                <option value="Colisión_con_motocicleta">Colisión con motocicleta</option>
+                <option value="Colisión_con_ciclista">Colisión con ciclista</option>
+                <option value="Otro">Otro</option>
+            </select>
+    </th>
+    <th style="text-align: left;">
+        <a href="#mypanel" data-role="button" data-icon="info" data-iconpos="notext" data-theme="b" data-inline="true">Tipos de Accidentes</a>
+    </th>
+  </tr>
+ 
+</table>
+
+
+</div>
+
+<div data-role="panel" id="mypanel" data-position="right" data-display="push">
+ <p class="ui-body-d">Colisión con vehículo automotor<a href="#popupInfo" data-rel="popup" data-transition="flow" data-role="button" class="ui-icon-alt" data-inline="true" data-transition="pop" data-icon="info" data-theme="e" data-iconpos="notext">Learn more</a></p>
+<div data-role="popup" id="popupInfo"  class="ui-content" data-theme="e" style="max-width:450px;">
+  <p>Una <strong>Colisión con vehículo automotor</strong> Encuentro violento,  accidental  o  imprevisto  de  dos  o  más  vehículos en una vía de circulación, del cual resultan averías, daños, pérdida parcial o total de vehículos o propiedades, así como lesiones leves y/o fatales
+a personas. Puede ser lateral, frontal o por alcance.</p>
+</div>
+ <a href="#mypanel"  data-rel="close"  data-role="button" data-theme="b">Cerrar</a>
+</div><!-- /panel -->
+
+
+<br/>
+
+<table id="Encabezado" border="0" style="width:100%">
+                        <tr>
+                          <td style="width: 13%"></td>
+                          <td style="width: 13%"></td>
+                          <td style="width: 13%"><a data-role="button" data-mini="true" data-theme="b" data-inline="true"  type="submit" id="save_ac"  onClick="save_dato(),obtenerDatos(),crearTabla()" ><img src="img/diskette.png" style="width:42px;height:42px;border:0;"></a></td>
+                          <td style="width: 13%"><a href="mapa.html"  data-role="button" data-mini="true" data-theme="b" data-inline="true" id="take_photo"><img src="img/map_1.png" style="width:42px;height:42px;border:0;"></a></td>
+                          <td style="width: 13%"></td>
+                          <td style="width: 13%"></td>
+                        </tr>
+                        
+                </table>
+
+
+
+
+</form>
+
+    <div id="result"></div>
+
+<table data-role="table" id="table-custom-2" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe ui-responsive" >
+         <thead>
+           <tr class="ui-bar-d">
+             <th data-priority="1">Tipo Accidente</th>
+             <th data-priority="2">Longitud</th>
+             <th data-priority="3">Latitud</th>
+             <th data-priority="4">Fecha</th>
+           </tr>
+         </thead>
+       </table>
+<div id="table-custom-2"></div>
+
+</body>
+
+</html>
