@@ -1,0 +1,2 @@
+# appmobilecaptura
+Aplicacion Mobile Captura
