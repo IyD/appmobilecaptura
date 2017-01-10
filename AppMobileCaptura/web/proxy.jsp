@@ -6,7 +6,7 @@
 
     <%@page session="false"%> 
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
-    <%@page import="java.net.*,java.io.*,mx.unam.igg.gits.decode.Decode" %>
+    <%@page import="java.net.*,java.io.*" %>
 
 
 <%

@@ -51,9 +51,9 @@ body#inicio header{
 }
 body#inicio header .logo{
 	display: inline-block;
-	height: 70%;
+	height: 85%;
 	padding: 1em;
-	vertical-align: middle;
+	vertical-align: left;
 }
 body#inicio header .logo img{
 	max-width: 100%;

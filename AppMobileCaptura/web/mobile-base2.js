@@ -98,9 +98,9 @@ var init = function (onSelectFeatureFunction) {
 //    		);
                     var la1 = new OpenLayers.Layer.WMS(
     			"Delegaciones",
-    			"http://132.247.103.134:8080/geoservergits/GITSDF/wms",
+    			"http://132.247.103.8:8082/geoservergits/GITSDF/wms",
     			{'layers': 'GITSDF:inegi_delegaciones_df_2012', transparent: true},
-    			{LimiteAdmini: true, visibility: false}
+    			{LimiteAdmini: true, visibility: true}
     		);
 //                    var la3 = new OpenLayers.Layer.WMS(
 //    			"Delegaciones",
@@ -873,7 +873,7 @@ var init = function (onSelectFeatureFunction) {
                    );
            var accid0 = new OpenLayers.Layer.WMS(
                            "Registro accidentes de tránsito",
-                           "http://132.247.103.134:8080/geoservergits/GITSDF/wms",
+                           "http://132.247.103.8:8082/geoservergits/GITSDF/wms",
                            {'layers': 'GITSDF:registro_accidentes', transparent: true},
                            {ACCIDENTESTRA: true, visibility: true}
                    );
@@ -1118,7 +1118,7 @@ var init = function (onSelectFeatureFunction) {
     });
 
         info = new OpenLayers.Control.WMSGetFeatureInfo({
-            url: 'http://132.247.103.134:8080/geoservergits/GITSDF/wms', 
+            url: 'http://132.247.103.8:8082/geoservergits/GITSDF/wms', 
             title: 'Identify features by clicking',
             queryVisible: true,
             eventListeners: {

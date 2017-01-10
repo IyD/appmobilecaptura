@@ -53,7 +53,7 @@
         </style>
 
         <h1 id="demo" align="center" >Registro de Puntos</h1>
-    <center><a data-role="button" type=image src="css/loca.png" data-mini="true" data-theme="e" data-inline="true" onclick="getLocation(), setTimeout(mapCarga, 3000), fecha()">Localizame</a></center>
+    <center><a data-role="button" type=image src="css/loca.png" data-mini="true" data-theme="e" data-inline="true" onclick="getLocation(), setTimeout(mapCarga, 5000), fecha()">Localizame</a></center>
     <br></br>
 
     <div id="map_canvas" style="margin:0 auto; width:500px;height:380px; display: none;"></div>
@@ -274,7 +274,7 @@
 
 
         function updateResult(info, longitud, latitud, usuario) {
-            var url = "http://132.247.103.25:8080/gits-geoportal-web/info?info=" + info + "longi=" + long + "&lati=" + lati + "&user=" + usuario;	 // Establecer URL de la acción 
+            var url = "http://132.247.103.30:8080/gits-geoportal-web/info?info=" + info + "longi=" + long + "&lati=" + lati + "&user=" + usuario;	 // Establecer URL de la acción 
             alert("Coordenada Capturada");
             $("#result").load(url);
         }
